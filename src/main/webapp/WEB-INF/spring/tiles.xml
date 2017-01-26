@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE tiles-definitions PUBLIC  
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"  
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">  
+       
+<tiles-definitions>  
+	<definition name="base"  
+	    template="/WEB-INF/views/layout.jsp">  
+	    <put-attribute name="title" value="" />  
+	    <put-attribute name="header" value="/WEB-INF/views/header.jsp" />  
+	    <put-attribute name="body" value="" />  
+	</definition>  
+  
+  	<definition name="home" extends="base">  
+	       <put-attribute name="title" value="Shop" />  
+	       <put-attribute name="body" value="" />  
+ 	</definition> 
+	 
+	<definition name="category_list" extends="base">  
+	      <put-attribute name="title" value="Lista kategorii" />  
+	      <put-attribute name="body" value="/WEB-INF/views/category/list.jsp" />  
+	</definition>  
+	 
+ 	<definition name="category_add" extends="base">  
+	      <put-attribute name="title" value="Dodaj kategorie" />  
+	      <put-attribute name="body" value="/WEB-INF/views/category/add.jsp" />  
+	</definition>  
+    
+</tiles-definitions>  

@@ -1,73 +1,44 @@
 package com.zut.wi.shop.repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.zut.wi.shop.domian.Category;
+import com.zut.wi.shop.domain.Category;
 
-@Component
+@Repository
+@Transactional
 public class CategoryRepository {
+
 	@Autowired
-	private JdbcTemplate jdbcTemplate;
-	
-	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
+	private SessionFactory sessionFactory;
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 	
-	public Category save(Category category){
-		String q;
-		if(category.getSubcategory() == null){
-			q = "insert into category(name) "
-					+ "values('" + category.getName()
-					+ "')";
-		} else {
-			q = "insert into category(name,subcategory_id) "
-					+ "values('" + category.getName() + "','" + category.getSubcategory().getId()
-					+ "')";
+	protected Session getCurrentSession() {
+		Session session;
+
+		try {
+		    session = sessionFactory.getCurrentSession();
+		} catch (HibernateException e) {
+		    session = sessionFactory.openSession();
 		}
-		
-		final String query = q;
-		
-		KeyHolder holder = new GeneratedKeyHolder();
-
-		jdbcTemplate.update(new PreparedStatementCreator() {
-		    @Override
-		    public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-		        PreparedStatement statement = con.prepareStatement(query.toString(), Statement.RETURN_GENERATED_KEYS);
-		        return statement;
-		    }
-		}, holder);
-		
-		category.setId( (int) holder.getKey().longValue() );
-		
-		return category;
+		return session;
 	}
-	
+
 	public List<Category> findAll() {
-		String sql = "SELECT * FROM category";
+		return ( List<Category>) getCurrentSession().createCriteria(Category.class).list();
+	}
 
-		List<Category> category = jdbcTemplate.query(sql, new RowMapper<Category>() {
-			public Category mapRow(ResultSet rs, int rowNum) throws SQLException {
-				Category category = new Category();
-				category.setId(rs.getInt("id"));
-				category.setName(rs.getString("name"));
-				//Category.setModel(rs.getString("model"));
-
-				return category;
-			}
-		});
+	public Category save(Category category) {
+		getCurrentSession().saveOrUpdate(category);
 
 		return category;
 	}

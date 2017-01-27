@@ -3,19 +3,29 @@
 
 <h3>Dodaj kategorie</h3>
 <div class="col-sm-8">
-	<form:form method="POST" class="form-horizontal" id="category">
+	<form:form method="POST" class="form-horizontal">
 		<div class="form-group">
 		    <label class="col-sm-2 control-label">Nazwa</label>
 		    <div class="col-sm-10">
 		      <form:input path="name" type="text" class="form-control"/>
 		    </div>
+		    <form:errors path="name" class="control-label hasError" />
 	  	</div>
-	  	<div class="form-group">
-		    <label class="col-sm-2 control-label">Podkategorie</label>
+		
+		<div class="form-group">
+		    <label class="col-sm-2 control-label">Nazwa</label>
 		    <div class="col-sm-10">
-		      <form:input path="subcategory" type="text" class="form-control"/>
+				<form:select path="subcategory.id" class="form-control">   
+      				<option value="0">Select a type</option>
+       				<c:forEach items="${categories}" var="subcategory">
+        				<option value="${subcategory.id}">${subcategory.name}</option>
+       				</c:forEach>
+				</form:select>
+		      	<form:errors path="subcategory" class="control-label hasError" />
 		    </div>
+		    
 	  	</div>
+	  	
 	  	<div class="form-group">
 		    <div class="col-sm-offset-2 col-sm-10">
 		      <button type="submit" class="btn btn-default">Zapisz</button>

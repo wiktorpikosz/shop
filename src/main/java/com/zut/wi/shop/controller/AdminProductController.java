@@ -18,7 +18,7 @@ import com.zut.wi.shop.service.CategoryService;
 import com.zut.wi.shop.service.ProductService;
 
 @Controller
-public class ProductController {
+public class AdminProductController {
 	@Autowired
 	private ProductService productService;
 

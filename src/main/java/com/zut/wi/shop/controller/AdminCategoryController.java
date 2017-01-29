@@ -18,11 +18,11 @@ import com.zut.wi.shop.domain.Category;
 import com.zut.wi.shop.service.CategoryService;
 
 @Controller
-public class CategoryController {
+public class AdminCategoryController {
 	@Autowired
 	private CategoryService categoryService;
 
-	private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AdminCategoryController.class);
 
 	public void setCategoryService(CategoryService categoryService) {
 		this.categoryService = categoryService;

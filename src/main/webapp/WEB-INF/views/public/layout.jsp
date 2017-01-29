@@ -10,9 +10,9 @@
 	<link href="<c:url value="/" />/resources/css/style.css" rel="stylesheet">
 </head>
 <body>
-	<tiles:insertAttribute name="header" />
+
 	<div id="main" class="container">
-		<tiles:insertAttribute name="body" />
+
 	</div>
 <script src="<c:url value="/" />/resources/bootstrap/js/bootstrap.min.js"></script>
 </body>

@@ -4,35 +4,43 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">  
        
 <tiles-definitions>  
-	<definition name="base"  
-	    template="/WEB-INF/views/layout.jsp">  
+	<definition name="base_admin" template="/WEB-INF/views/admin/layout.jsp">  
 	    <put-attribute name="title" value="" />  
-	    <put-attribute name="header" value="/WEB-INF/views/header.jsp" />  
+	    <put-attribute name="header" value="/WEB-INF/views/admin/header.jsp" />  
 	    <put-attribute name="body" value="" />  
 	</definition>  
-  
-  	<definition name="home" extends="base">  
+	 
+	<definition name="category_list" extends="base_admin">  
+	      <put-attribute name="title" value="Lista kategorii" />  
+	      <put-attribute name="body" value="/WEB-INF/views/admin/category/list.jsp" />  
+	</definition>  
+	 
+ 	<definition name="category_add" extends="base_admin">  
+	      <put-attribute name="title" value="Dodaj kategorie" />  
+	      <put-attribute name="body" value="/WEB-INF/views/admin/category/add.jsp" />  
+	</definition>  
+	
+    <definition name="product_list" extends="base_admin">  
+	      <put-attribute name="title" value="Lista produktów" />  
+	      <put-attribute name="body" value="/WEB-INF/views/admin/product/list.jsp" />  
+	</definition>
+	
+	<definition name="product_add" extends="base_admin">  
+	      <put-attribute name="title" value="Lista produktów" />  
+	      <put-attribute name="body" value="/WEB-INF/views/admin/product/add.jsp" />  
+	</definition>
+	
+	<definition name="base_public" template="/WEB-INF/views/public/layout.jsp">
 	       <put-attribute name="title" value="Shop" />  
 	       <put-attribute name="body" value="" />  
  	</definition> 
-	 
-	<definition name="category_list" extends="base">  
-	      <put-attribute name="title" value="Lista kategorii" />  
-	      <put-attribute name="body" value="/WEB-INF/views/category/list.jsp" />  
-	</definition>  
-	 
- 	<definition name="category_add" extends="base">  
-	      <put-attribute name="title" value="Dodaj kategorie" />  
-	      <put-attribute name="body" value="/WEB-INF/views/category/add.jsp" />  
-	</definition>  
-	
-    <definition name="product_list" extends="base">  
-	      <put-attribute name="title" value="Lista produktów" />  
-	      <put-attribute name="body" value="/WEB-INF/views/product/list.jsp" />  
-	</definition>
-	
-	<definition name="product_add" extends="base">  
-	      <put-attribute name="title" value="Lista produktów" />  
-	      <put-attribute name="body" value="/WEB-INF/views/product/add.jsp" />  
-	</definition>
+ 	
+  	<definition name="home" extends="base_public">  
+	       <put-attribute name="title" value="Shop" />  
+	       <put-attribute name="body" value="" />  
+ 	</definition> 
+ 	
+ 	<definition name="public_login" template="/WEB-INF/views/login.jsp">
+
+ 	</definition> 
 </tiles-definitions>  

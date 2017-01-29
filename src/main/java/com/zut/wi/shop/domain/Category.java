@@ -15,9 +15,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "category")
 public class Category {
 	@Id
-	@Column(name = "id")
+	@Column(name = "categoryId")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	int id;
+	int categoryId;
 
 	
 	@Column(name = "name")
@@ -28,12 +28,13 @@ public class Category {
 	@JoinColumn(name = "subcategory_id")
 	Category subcategory;
 
-	public int getId() {
-		return id;
+
+	public int getCategoryId() {
+		return categoryId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public String getName() {

@@ -15,10 +15,10 @@
 		<div class="form-group">
 		    <label class="col-sm-2 control-label">Nazwa</label>
 		    <div class="col-sm-10">
-				<form:select path="subcategory.id" class="form-control">   
+				<form:select path="subcategory.categoryId" class="form-control">   
       				<option value="0">Select a type</option>
        				<c:forEach items="${categories}" var="subcategory">
-        				<option value="${subcategory.id}">${subcategory.name}</option>
+        				<option value="${subcategory.categoryId}">${subcategory.name}</option>
        				</c:forEach>
 				</form:select>
 		      	<form:errors path="subcategory" class="control-label hasError" />

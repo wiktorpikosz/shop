@@ -21,43 +21,38 @@ import com.zut.wi.shop.service.CategoryService;
 public class CategoryController {
 	@Autowired
 	private CategoryService categoryService;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
-	
+
 	public void setCategoryService(CategoryService categoryService) {
 		this.categoryService = categoryService;
 	}
-	
-	@RequestMapping("/category")
-	public ModelAndView show(){
-		 return new ModelAndView("category_list", "categories", categoryService.showAll());  
+
+	@RequestMapping("/admin/category")
+	public ModelAndView show() {
+		return new ModelAndView("category_list", "categories", categoryService.showAll());
 	}
-	
-	@RequestMapping("/category/add")
-	public ModelAndView add(@ModelAttribute("command")  Category category){
+
+	@RequestMapping("/admin/category/add")
+	public ModelAndView add(@ModelAttribute("command") Category category) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		
 
 		model.put("categories", categoryService.showAll());
-		
+
 		return new ModelAndView("category_add", model);
 	}
-	
-	
-	@RequestMapping(value="/category/add", method=RequestMethod.POST)
-	public ModelAndView addPost(@Valid @ModelAttribute("command") Category category, BindingResult bindingResult){
+
+	@RequestMapping(value = "/admin/category/add", method = RequestMethod.POST)
+	public ModelAndView addPost(@Valid @ModelAttribute("command") Category category, BindingResult bindingResult) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		logger.info("break: {}", bindingResult.hasErrors());
-		
+
 		if (!bindingResult.hasErrors()) {
 			categoryService.add(category);
-			return new ModelAndView ("redirect:/category");
+			return new ModelAndView("redirect:/admin/category");
 		}
-		
 
 		model.put("categories", categoryService.showAll());
 		return new ModelAndView("category_add", model);
-
 	}
-	
+
 }

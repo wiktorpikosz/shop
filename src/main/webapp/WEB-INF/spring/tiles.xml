@@ -33,11 +33,12 @@
 	<definition name="base_public" template="/WEB-INF/views/public/layout.jsp">
 	       <put-attribute name="title" value="Shop" />  
 	       <put-attribute name="body" value="" />  
+	       <put-attribute name="header" value="/WEB-INF/views/public/header.jsp" />
  	</definition> 
  	
   	<definition name="home" extends="base_public">  
 	       <put-attribute name="title" value="Shop" />  
-	       <put-attribute name="body" value="" />  
+	       <put-attribute name="body" value="/WEB-INF/views/public/home.jsp" />
  	</definition> 
  	
  	<definition name="public_login" template="/WEB-INF/views/login.jsp">

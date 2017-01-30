@@ -24,4 +24,12 @@ public class CategoryRepository extends AbstractRepository {
 
 		return category;
 	}
+	
+	public List<Category> findMain() {
+		return (List<Category>) getCurrentSession()
+				.createSQLQuery("SELECT * FROM category c"
+						+ " WHERE c.subcategory_id IS NULL")
+				.addEntity(Category.class)
+				.list();
+	}
 }

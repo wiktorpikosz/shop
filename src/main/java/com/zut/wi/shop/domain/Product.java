@@ -37,7 +37,6 @@ public class Product {
 	private String manufacturer;
 
 	@Column(name = "image")
-	@NotEmpty()
 	private String image;
 
 	@Column(name = "price")

@@ -28,4 +28,8 @@ public class CategoryService {
 	public Category add(Category category){
 		return categoryRepository.save(category);
 	}
+	
+	public List<Category> getMainCategory(){
+		return categoryRepository.findMain();
+	}
 }
